@@ -1,16 +1,16 @@
-# e_shop
 
-A new Flutter project.
+# E shop (E-commerce app)
 
-## Getting Started
+Simple E commerce App.
+I have used Fake store api here.
+To manage its state i have used Provider.
+It has Cart which able to handle CRUD operation with the help of state managment.
+Cart has Slidable option to delete a product from list.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Screenshots
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+![App Screenshot](https://github.com/HH-Tushar/E-shop/blob/main/snaps/e%20shop%20snap1.jpg?raw=true)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![App Screenshot](https://github.com/HH-Tushar/E-shop/blob/main/snaps/e%20shop%20snap2.jpg?raw=true)
+
