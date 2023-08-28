@@ -1,18 +1,24 @@
+import 'package:flutter/foundation.dart';
+import 'package:provider/provider.dart';
+
 import '../api/custom_apies.dart';
-import '../api/product_model.dart';
+import '../api/models/all_product_model.dart';
 
-class Providers{
-  final List<AllProducts> _allproducts=[];
+class AllProductsData extends ChangeNotifier{
 
-  List<AllProducts> get getAllProducts
+   late List<Products> _allproducts=[];
+
+  List<Products> get getAllProductsData
   {return _allproducts;}
 
 
-  AllProducts? allProductDataModel;
+  Products? allProductDataModel;
   fetch()async{
-    allProductDataModel=await CustomAPIes.fetchAllProductDate();
-    _allproducts.addAll(allProductDataModel as Iterable<AllProducts>);
+    _allproducts=await CustomAPIes.fetchAllProductDate();
+    notifyListeners();
   }
 
 
 }
+
+

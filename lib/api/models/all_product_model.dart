@@ -1,13 +1,13 @@
-class AllProducts {
+class Products {
   int? id;
   String? title;
-  dynamic? price;
+  double? price;
   String? description;
   String? category;
   String? image;
   Rating? rating;
 
-  AllProducts(
+  Products(
       {this.id,
         this.title,
         this.price,
@@ -16,10 +16,10 @@ class AllProducts {
         this.image,
         this.rating});
 
-  AllProducts.fromJson(Map<String, dynamic> json) {
+  Products.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
-    price = json['price'];
+    price = double.parse(json['price'].toString());
     description = json['description'];
     category = json['category'];
     image = json['image'];
@@ -43,14 +43,14 @@ class AllProducts {
 }
 
 class Rating {
-  dynamic? rate;
-  dynamic? count;
+  double? rate;
+  int? count;
 
   Rating({this.rate, this.count});
 
   Rating.fromJson(Map<String, dynamic> json) {
-    rate = json['rate'];
-    count = json['count'];
+    rate = double.parse(json['rate'].toString());
+    count = int.parse(json['count'].toString());
   }
 
   Map<String, dynamic> toJson() {

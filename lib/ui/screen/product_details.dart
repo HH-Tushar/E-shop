@@ -1,21 +1,14 @@
-import 'package:e_shop/api/product_model.dart';
+import 'package:e_shop/api/models/all_product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:expandable_text/expandable_text.dart';
+
 class ProductDetails extends StatelessWidget {
-  final AllProducts sellectedProduct;
-  const ProductDetails({Key? key, required this.sellectedProduct}) : super(key: key);
+  final Products selectedProduct;
+  const ProductDetails({Key? key, required this.selectedProduct}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-//           appBar:AppBar(
-//               elevation: 0,
-// bottomOpacity: 0, toolbarOpacity: 0,
-//             titleSpacing: 0,
-//             automaticallyImplyLeading: false,
-//             leading: IconButton(onPressed: (){},icon: Icon(Icons.arrow_back_ios),),
-//          ),
-
      body: SafeArea(
        child: Stack(
          children: [
@@ -24,18 +17,26 @@ class ProductDetails extends StatelessWidget {
              child: SingleChildScrollView(
                child: Column(
                  children: [
-                   Image.network(sellectedProduct.image.toString(),height: 500,),
-                   SizedBox(height: 15),
+                   Text("Product Details",style: buttonText,),
+                   Hero(
+                       tag:selectedProduct.title.toString(),
+                       child: Image.network(selectedProduct.image.toString(),height: 500,)),
+                   const SizedBox(height: 15),
 
-                   Text(sellectedProduct.title.toString()),
-                   SizedBox(height: 8),
+                   Text(selectedProduct.title.toString(),style: titleText,),
+                   const SizedBox(height: 8),
                    Align(
                        alignment: Alignment.centerRight,
-                       child: Text(sellectedProduct.rating!.rate.toString())),
+                       child: Text("⭐ ${selectedProduct.rating!.rate}",style: bodyText,)),
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: const Text("Description : ")),
                     ExpandableText(
-                      sellectedProduct.description.toString(),linkColor: Colors.blue,
-                      expandText: 'See More',collapseText: "See Less",),
-                   Text("Product Catagory : ${sellectedProduct.category}",
+                      selectedProduct.description.toString(),linkColor: Colors.blue,
+                      expandText: 'See More',collapseText: "See Less",style: bodyText,),
+                   const SizedBox(height: 8),
+                   Text("Product Category : ${selectedProduct.category}",
+                     style: bodyText,
                    ),
 
                  ],
@@ -47,8 +48,9 @@ class ProductDetails extends StatelessWidget {
              top: 0,
              left: 0,
              child: MaterialButton(
-               padding: EdgeInsets.all(5),
-               shape: CircleBorder(),
+               color: Colors.teal.shade300,
+               padding: const EdgeInsets.all(5),
+               shape: const CircleBorder(),
                onPressed: (){Navigator.pop(context);},
                child: Icon(Icons.clear),) ,
                ),
@@ -58,15 +60,21 @@ class ProductDetails extends StatelessWidget {
        ),
      ),
       bottomNavigationBar: Container(
+        alignment: Alignment.center,
         padding: EdgeInsets.all(10),
   margin: EdgeInsets.all(10),
   height: 70,
   decoration: BoxDecoration(
-      color: Colors.green,
+      color: Colors.teal,
     borderRadius: BorderRadius.all(Radius.circular(15))
   ),
+        child: Text("Add To Cart",style: buttonText,),
 
 ),
     );
   }
 }
+
+TextStyle bodyText=TextStyle(fontSize: 16,fontWeight: FontWeight.w500);
+TextStyle titleText=TextStyle(fontSize: 20,fontWeight: FontWeight.w500);
+TextStyle buttonText=const TextStyle(fontSize: 20,fontWeight: FontWeight.w600,letterSpacing: 2);
