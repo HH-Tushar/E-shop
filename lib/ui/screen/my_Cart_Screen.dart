@@ -69,6 +69,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                 Provider.of<MyCart>(context,listen: false).updatePricing(1, false,index);
                               },
                               style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.teal,
                                 shape: CircleBorder(),
                               ),
                               child: const Icon(Icons.add)
@@ -81,6 +82,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                 Provider.of<MyCart>(context,listen: false).updatePricing(1, true,index);
                               },
                               style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.teal,
                                 shape: CircleBorder(),
                               ),
                               child: const Icon(Icons.remove)
