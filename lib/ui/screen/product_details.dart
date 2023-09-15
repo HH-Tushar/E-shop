@@ -13,7 +13,7 @@ class ProductDetails extends StatelessWidget {
        child: Stack(
          children: [
            Padding(
-             padding: const EdgeInsets.all(8.0),
+             padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 12),
              child: SingleChildScrollView(
                child: Column(
                  children: [
@@ -30,14 +30,23 @@ class ProductDetails extends StatelessWidget {
                        child: Text("⭐ ${selectedProduct.rating!.rate}",style: bodyText,)),
                     Align(
                         alignment: Alignment.centerLeft,
-                        child: const Text("Description : ")),
+                        child:  Text("Description : ",style: subTitleText,)),
                     ExpandableText(
                       selectedProduct.description.toString(),linkColor: Colors.blue,
                       expandText: 'See More',collapseText: "See Less",style: bodyText,),
-                   const SizedBox(height: 8),
-                   Text("Product Category : ${selectedProduct.category}",
-                     style: bodyText,
+                   const SizedBox(height: 15),
+                   Row(
+                     children: [
+                       Text("Product Category : ",
+                         style: subTitleText,
+                       ),Text("${selectedProduct.category}",
+                         style: bodyText,
+                       ),
+                     ],
                    ),
+                   const SizedBox(height: 15),
+
+                   Divider(indent: 20,endIndent: 20),
 
                  ],
                ),
@@ -77,4 +86,5 @@ class ProductDetails extends StatelessWidget {
 
 TextStyle bodyText=TextStyle(fontSize: 16,fontWeight: FontWeight.w500);
 TextStyle titleText=TextStyle(fontSize: 20,fontWeight: FontWeight.w500);
+TextStyle subTitleText=TextStyle(fontSize: 18,fontWeight: FontWeight.w500);
 TextStyle buttonText=const TextStyle(fontSize: 20,fontWeight: FontWeight.w600,letterSpacing: 2);

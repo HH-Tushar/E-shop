@@ -20,6 +20,19 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  SnackBar itemAddedSuccessfully = const SnackBar(
+    content: Text('Item Added Successfully'),
+  );
+  SnackBar itemAlreadyExist = const SnackBar(
+    content: Text('Item Already Exist in cart !'),
+  );
+
+// Find the ScaffoldMessenger in the widget tree
+// and use it to show a SnackBar.
+
+
+
   @override
   void initState() {
     Provider.of<AllProductsData>(context, listen: false).fetch();
@@ -176,8 +189,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                 MaterialButton(
                                   onPressed: () {
                                     //adding items in my cart
-                                    Provider.of<MyCart>(context, listen: false).addItemsInCart(allProductData.getAllProductsData[index]);
-                                  },
+                                    bool isExist= Provider.of<MyCart>(context, listen: false).checkItem(allProductData.getAllProductsData[index]);
+                                  if(isExist){
+                                    ScaffoldMessenger.of(context).showSnackBar(itemAlreadyExist);
+                                  }
+                                  else{
+                                    ScaffoldMessenger.of(context).showSnackBar(itemAddedSuccessfully);
+                                  }
+                                    },
                                   child: Text("Add to Cart"),
                                   color: buttonColor,
                                   shape: RoundedRectangleBorder(

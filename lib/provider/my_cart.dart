@@ -24,6 +24,18 @@ class MyCart extends ChangeNotifier {
     return _myCart;
   }
 
+
+  bool checkItem (Products curProduct){
+    bool isExist = false;
+    _myCart.forEach((item) => {
+      if(item.products.id == curProduct.id){
+        isExist = true
+      }
+    });
+    if(!isExist){addItemsInCart(curProduct);}
+    return isExist;
+  }
+
   addItemsInCart(Products curProduct) async {
     _myCart.add(MyCartModel(products: curProduct, totalItem: 1));
     // _allproducts=await CustomAPIes.fetchAllProductDate();

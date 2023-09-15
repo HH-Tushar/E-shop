@@ -1,5 +1,6 @@
 import 'package:e_shop/provider/lists_of_products.dart';
 import 'package:e_shop/provider/my_cart.dart';
+import 'package:e_shop/ui/screen/auth_screen.dart';
 import 'package:e_shop/ui/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -26,9 +27,13 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
 
         title: 'E Shop',
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const AuthScreen(),
+        },
         theme:
           ThemeData(
-            appBarTheme: AppBarTheme(backgroundColor: Colors.teal),
+            appBarTheme: const AppBarTheme(backgroundColor: Colors.teal),
             scaffoldBackgroundColor: Colors.teal.shade50,
             textTheme: GoogleFonts.latoTextTheme(
               Theme.of(context).textTheme,
@@ -37,7 +42,6 @@ class MyApp extends StatelessWidget {
 
         ),
        //home: SliverDummy(),
-        home: const HomeScreen(),
       ),
     );
   }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../screen/auth_screen.dart';
+
 
 var drawerTextColor = TextStyle(
   color: Colors.grey[600],
@@ -63,9 +65,15 @@ class CustomDrawer extends StatelessWidget {
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                     //tileColor:Colors.black12,
                     leading: const Icon(Icons.logout),
-                    title: Text(
-                      'L O G O U T',
-                      style: drawerTextColor,
+                    title: TextButton(onPressed: (){
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (BuildContext context) => AuthScreen()),
+                          ModalRoute.withName('/') // Replace this with your root screen's route name (usually '/')
+                      );
+                    },
+
+                       child: Text("L O G O U T",style: drawerTextColor,),
                     ),
                   ),
                 ),
