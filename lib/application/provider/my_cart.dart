@@ -1,9 +1,10 @@
 import 'package:flutter/foundation.dart';
+
 import '../api/models/all_product_model.dart';
 import '../api/models/card_model.dart';
 
 class MyCart extends ChangeNotifier {
-  late List<MyCartModel> _myCart = [];
+  late final List<MyCartModel> _myCart = [];
   double _totalProductPrice = 0;
   double _totalPrice = 0;
   double _totalVat = 0;
@@ -24,15 +25,14 @@ class MyCart extends ChangeNotifier {
     return _myCart;
   }
 
-
-  bool checkItem (Products curProduct){
+  bool checkItem(Products curProduct) {
     bool isExist = false;
     _myCart.forEach((item) => {
-      if(item.products.id == curProduct.id){
-        isExist = true
-      }
-    });
-    if(!isExist){addItemsInCart(curProduct);}
+          if (item.products.id == curProduct.id) {isExist = true}
+        });
+    if (!isExist) {
+      addItemsInCart(curProduct);
+    }
     return isExist;
   }
 
@@ -46,18 +46,20 @@ class MyCart extends ChangeNotifier {
 
     notifyListeners();
   }
+
   //update total price
-  updatePricing(final int itemCount, final bool isDeleting,final int index) {
-
+  updatePricing(final int itemCount, final bool isDeleting, final int index) {
     if (!isDeleting) {
-      _myCart[index].totalItem=int.parse(_myCart[index].totalItem.toString())+itemCount;
-      _totalProductPrice = _totalProductPrice + (_myCart[index].products.price! * itemCount);
+      _myCart[index].totalItem =
+          int.parse(_myCart[index].totalItem.toString()) + itemCount;
+      _totalProductPrice =
+          _totalProductPrice + (_myCart[index].products.price! * itemCount);
       // notifyListeners();
-    }
-
-    else if (isDeleting) {
-      _myCart[index].totalItem=int.parse(_myCart[index].totalItem.toString())-itemCount;
-      _totalProductPrice = _totalProductPrice - (_myCart[index].products.price! * itemCount);
+    } else if (isDeleting) {
+      _myCart[index].totalItem =
+          int.parse(_myCart[index].totalItem.toString()) - itemCount;
+      _totalProductPrice =
+          _totalProductPrice - (_myCart[index].products.price! * itemCount);
     }
 
     _totalVat = _totalProductPrice * 0.07;
@@ -66,9 +68,8 @@ class MyCart extends ChangeNotifier {
     notifyListeners();
   }
 
-
-  deleteProduct(int index){
-    updatePricing(_myCart[index].totalItem as int,true,index);
+  deleteProduct(int index) {
+    updatePricing(_myCart[index].totalItem as int, true, index);
 
     _myCart.removeAt(index);
     notifyListeners();

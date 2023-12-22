@@ -12,7 +12,7 @@ class CustomButton extends StatelessWidget {
       alignment: Alignment.center,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        gradient:LinearGradient(colors:[
+        gradient:const LinearGradient(colors:[
           Color(0xffF8C457),
           Color(0xffFBA139),
         ],
@@ -23,8 +23,8 @@ class CustomButton extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text(buttonName,style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
-          Icon(Icons.arrow_forward)
+          Text(buttonName,style: const TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
+          const Icon(Icons.arrow_forward)
         ],
       ),
     );
